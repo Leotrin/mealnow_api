@@ -175,9 +175,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
-
+        App\Providers\StripeProvider::class,
         'Aloha\Twilio\Support\Laravel\ServiceProvider',
         Barryvdh\Snappy\ServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class, //Laracollective Library
 
     ],
 
@@ -230,10 +231,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
         'Twilio' => 'Aloha\Twilio\Support\Laravel\Facade',
-
-
+        'CD' => App\Library\CustomDesignHelper::class, //CD = Custom Design
+        'Form' => Collective\Html\FormFacade::class, //Laracollective Library
+        'Html' => Collective\Html\HtmlFacade::class, //Laracollective Library
     ],
 
 ];

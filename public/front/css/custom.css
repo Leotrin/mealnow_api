@@ -1,0 +1,460 @@
+/*
+COLOR MAIN : #141A26
+DARK : #9d1e1f
+LIGHT: #fd2c2d
+*/
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+.panel-title > a:before {
+    float: right !important;
+    font-family: FontAwesome;
+    content:"\f106";
+    padding-right: 5px;
+}
+.panel-title > a.collapsed:before {
+    float: right !important;
+    content:"\f107";
+}
+.panel-title > a:hover,
+.panel-title > a:active,
+.panel-title > a:focus  {
+    text-decoration:none;
+}
+.close {
+    font-size:30pt !important;
+    font-weight: 300 !important;
+    text-shadow: none !important;
+    margin-top:-10px !important;
+}
+.selectedServiceSearch {
+    color:#141A26;
+    font-weight:bold;
+}
+.p0 {padding:0px;}
+.p5 {padding:5px;}
+.p10 {padding:10px;}
+.p15 {padding:15px;}
+.p20 {padding:20px;}
+.ph10 {padding:0px 10px;}
+.pt10 {padding-top:10px;}
+.noBorder{ border:none;}
+.noBorderRadius{ border-radius:0px;}
+.borderRadiusCircle{ border-radius:34px;}
+
+.mb5 {margin-bottom:5px;}
+
+.panel-default {
+    border:none;
+}
+.panel-default > .panel-heading + .panel-collapse > .panel-body {
+    border:none !important;
+    background: #fafafa;
+}
+.panel-default > .panel-heading {
+    background: #fafafa;
+    border:none;
+    text-align:center;
+}
+.topAlignPrice {
+    vertical-align: super;
+    font-size:8pt;
+    color:#000;
+}
+.menuProductDesign {
+    border-bottom:1px dashed #ccc;
+    padding:5px;
+}
+.menuProductDesign:hover {
+    background:#efefef;
+    cursor: pointer;
+}
+
+
+/* The container */
+.checkboxLabel {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkboxLabel input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Create a custom checkbox */
+.checkboxCheckmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkboxLabel:hover input ~ .checkboxCheckmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkboxLabel input:checked ~ .checkboxCheckmark {
+    background-color: #141A26;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkboxCheckmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkboxLabel input:checked ~ .checkboxCheckmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkboxLabel .checkboxCheckmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/* Customize the label (the container) */
+.radioLabel {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radioLabel input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Create a custom radio button */
+.radioCheckmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radioLabel:hover input ~ .radioCheckmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radioLabel input:checked ~ .radioCheckmark {
+    background-color: #141A26;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radioCheckmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radioLabel input:checked ~ .radioCheckmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radioLabel .radioCheckmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+
+/* STYLE TOGGLE FRONTEND PICKUP DELIVERY START */
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 34px;
+}
+
+.switch input {display:none;}
+.switch2 {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch2 input {display:none;}
+
+.slider1 {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider1:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider1 {
+    background-color: #141A26;
+}
+
+input:focus + .slider1 {
+    box-shadow: 0 0 1px #141A26;
+}
+
+input:checked + .slider1:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded slider1s */
+.slider1.round {
+    border-radius: 34px;
+}
+
+.slider1.round:before {
+    border-radius: 50%;
+}
+
+.input-group-addon {
+    background: transparent !important;
+}
+/* STYLE TOGGLE FRONTEND PICKUP DELIVERY END */
+
+
+img {
+    max-width:800px !important;
+}
+/* PIZZA ICON START */
+.pizzaRadioContainerFirstHalf {
+    cursor: pointer;
+    user-select: none;
+}
+.pizzaRadioContainerFirstHalf input {
+    display: none;
+}
+.pizzaRadioContainerFirstHalf .pizzaIconFirstHalf {
+    display: inline-block;
+    width:24px;
+    height:24px;
+    background: url('../../front/icons/first_half2.png');
+    border-radius:50%;
+}
+.pizzaRadioContainerFirstHalf:hover .pizzaIconFirstHalf{
+    background: url('../../front/icons/first_half.png');
+}
+.pizzaRadioContainerFirstHalf input:checked + .pizzaIconFirstHalf{
+    background: url('../../front/icons/first_half.png');
+}
+
+.pizzaRadioContainerSecondHalf {
+    cursor: pointer;
+    user-select: none;
+}
+.pizzaRadioContainerSecondHalf input {
+    display: none;
+}
+.pizzaRadioContainerSecondHalf .pizzaIconSecondtHalf {
+    display: inline-block;
+    width:24px;
+    height:24px;
+    background: url('../../front/icons/second_half2.png');
+    border-radius:50%;
+}
+.pizzaRadioContainerSecondHalf:hover .pizzaIconSecondtHalf{
+    background: url('../../front/icons/second_half.png');
+}
+.pizzaRadioContainerSecondHalf input:checked + .pizzaIconSecondtHalf{
+    background: url('../../front/icons/second_half.png');
+}
+
+.pizzaRadioContainerWhole {
+    cursor: pointer;
+    user-select: none;
+}
+.pizzaRadioContainerWhole input {
+    display: none;
+}
+.pizzaRadioContainerWhole .pizzaIconWhole {
+    display: inline-block;
+    width:24px;
+    height:24px;
+    background: url('../../front/icons/whole2.png');
+    border-radius:50%;
+}
+.pizzaRadioContainerWhole:hover .pizzaIconWhole{
+    background: url('../../front/icons/whole.png');
+}
+.pizzaRadioContainerWhole input:checked + .pizzaIconWhole{
+    background: url('../../front/icons/whole.png');
+}
+/* PIZZA ICON END */
+
+.deleteIcon:hover {
+    color: rgb(30, 37, 51);
+    cursor:pointer;
+}
+
+.loadingSVG {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .2 )
+    url('http://biteme.mangosoft.com.mk/front/images/loading.svg')
+    50% 50%
+    no-repeat;
+}
+
+#overlayLoading {
+    position: absolute;
+    visibility: hidden;
+    left: 0;
+    top: 0;
+    width:100%;
+    text-align:center;
+    z-index: 9999;
+    background: rgba( 255, 255, 255, .6 );
+    /* Required for IE 5, 6, 7 */         /* ...or something to trigger hasLayout, like zoom: 1; */         width: 100%;           /* Theoretically for IE 8 & 9 (more valid) */         /* ...but not required as filter works too */         /* should come BEFORE filter */         -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";          /* This works in IE 8 & 9 too */         /* ... but also 5, 6, 7 */         filter: alpha(opacity=90);          /* Older than Firefox 0.9 */         -moz-opacity:0.9;          /* Safari 1.x (pre WebKit!) */         -khtml-opacity: 0.9;          /* Modern!         /* Firefox 0.9+, Safari 2?, Chrome any?         /* Opera 9+, IE 9+ */         opacity: 0.9;
+}
+.gap{
+    height: 50px;
+}
+
+/*!* When the body has the loading class, we turn*/
+   /*the scrollbar off with overflow:hidden *!*/
+/*body.loading .loadingSVG {*/
+    /*overflow: hidden;*/
+/*}*/
+
+/*!* Anytime the body has the loading class, our*/
+   /*modal element will be visible *!*/
+/*body.loading .loadingSVG {*/
+    /*display: block;*/
+/*}*/
+
+
+/* Customize the label (the container) */
+.radioLabelRegister {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    margin-right:20px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radioLabelRegister input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Create a custom radio button */
+.radioCheckmarkRegister {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: #999;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radioLabelRegister:hover input ~ .radioCheckmarkRegister {
+    background-color: #484848;
+}
+
+/* When the radio button is checked, add a blue background */
+.radioLabelRegister input:checked ~ .radioCheckmarkRegister {
+    background-color: #141A26;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radioCheckmarkRegister:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radioLabelRegister input:checked ~ .radioCheckmarkRegister:after {
+    display: inline-block;
+}
+
+/* Style the indicator (dot/circle) */
+.radioLabelRegister .radioCheckmarkRegister:after {
+    top: 5px;
+    left: 5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+}
+
+/*Override Menu Script*/
+.mm-hasnavbar-top-3 .mm-panels {
+    top:0 !important;
+}
+.mm-navbar-size-3 {
+    height:0 !important;
+}

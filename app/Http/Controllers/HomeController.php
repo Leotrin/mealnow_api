@@ -2,27 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Shop;
+use Session;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        $this->middleware('auth');
+        //Checks for active logged in users only for index function
+        $this->middleware('auth',['only'=>['home']]);
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home');
+        return view('welcome');
+    }
+    public function home(){
+        if(auth()->user()->group_id==7){
+            return redirect('/shop');
+        }elseif(auth()->user()->group_id==4){
+            return redirect('/customer');
+        }else{
+            return redirect('/admin');
+        }
+    }
+    public function notAllowed(){
+
+        return view('errors.not-allowed');
+    }
+    public function frontend()
+    {
+        $service = 'pickup';
+        if(session('service')!='pickup'){
+            $service = session('service');
+        }
+        return view('frontend.dashboard',compact('service'));
+    }
+    public function about(){
+        return view('frontend.about');
+    }
+    public function contact(){
+        return view('frontend.contact');
+    }
+    public function joinNow(){
+        return view('frontend.joinNow');
     }
 }
