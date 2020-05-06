@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Server Melanow" uuid="800166d9-f9ee-4714-ac37-89c83ceabea1">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://5.32.177.100:3307/mealnow</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="Europe/Zurich" />
+      </driver-properties>
+    </data-source>
+  </component>
+</project>

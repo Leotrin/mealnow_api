@@ -56,11 +56,11 @@ function changeOption(product,option,value){
     updaterPrice();
 }
 function clearPopUp(){
-    $('.biteMeNotMultiple_price').empty();
-    $('.biteMeTopping').prop('checked',false);
-    $('.biteMeTopping_price').empty();
-    $('.biteMeMultiple').prop('checked',false);
-    $('.biteMeMultiple_price').empty();
+    $('.mealNowNotMultiple_price').empty();
+    $('.mealNowTopping').prop('checked',false);
+    $('.mealNowTopping_price').empty();
+    $('.mealNowMultiple').prop('checked',false);
+    $('.mealNowMultiple_price').empty();
 }
 function addTopingToCart(product,toping,value,categoryKey, topingKey){
     var type = $("input[name='category_"+categoryKey+"_product_"+product+"_type']:checked").val();
@@ -113,7 +113,7 @@ function addTopingToCart(product,toping,value,categoryKey, topingKey){
                 'price'     :price
             }
         );
-        $('p#category_'+categoryKey+'_product_'+product+'_pizzaShow_'+topingKey).html(toping + ' <strong class="biteMeTopping_price">£'+price+'</span>');
+        $('p#category_'+categoryKey+'_product_'+product+'_pizzaShow_'+topingKey).html(toping + ' <strong class="mealNowTopping_price">£'+price+'</span>');
     }
     updaterPrice();
 }
@@ -221,7 +221,7 @@ function addExtraNotMultiple(product, extra,propertyKey,categoryKey, extraKey){
         );
     }
 
-    $('.biteMeNotMultiple_price').empty();
+    $('.mealNowNotMultiple_price').empty();
 
     $('#category_'+categoryKey+'_product_'+product+'_extra_'+propertyKey+'_'+extraKey+'_notMultiple').html(price+' &pound;');
     updaterPrice();

@@ -74,7 +74,7 @@
                         <div class="clearfix"></div>
                         <div class="col-md-5 p10">
                             <label>Sub Domain</label>
-                            {{ Form::text('subdomain', null, array('class'=>'form-control', 'placeholder'=>'subdomain.biteme.com.uk','required'=>'required')) }}
+                            {{ Form::text('subdomain', null, array('class'=>'form-control', 'placeholder'=>'subdomain.mealnow.com','required'=>'required')) }}
                         </div>
                         <div class="clearfix"></div>
                         <div class="col-md-5 p10">

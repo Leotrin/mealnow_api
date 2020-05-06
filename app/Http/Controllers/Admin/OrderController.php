@@ -81,7 +81,7 @@ class OrderController extends Controller
         if ($order->status == 0) {
           $order->status = 2;
           $order->save();
-          $this->order_log($order->id, auth()->user()->id, 'Rejected by BiteMe Order Manager', 'Changed status to Rejected (2)');
+          $this->order_log($order->id, auth()->user()->id, 'Rejected by Melanow Order Manager', 'Changed status to Rejected (2)');
           return redirect('admin/orders');
         }
       }catch(Exception $e){

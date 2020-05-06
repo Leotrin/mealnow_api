@@ -91,7 +91,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="footer-about-company">
-                            <li>Copyright © 2018 BiteMe</li>
+                            <li>Copyright © 2020 MealNow</li>
                             <li>6000 Ohrid, Macedonia</li>
                             <li>Tel: 00389 - 7# ### ###</li>
                         </ul>

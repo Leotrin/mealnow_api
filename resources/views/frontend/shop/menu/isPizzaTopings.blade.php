@@ -23,7 +23,7 @@
                         <input type="radio"
                                name="category_{{$categoryKey}}_product_{{$productKey}}_toping_{!! $topingKey !!}"
                                id="category_{{$categoryKey}}_product_{{$productKey}}_toping_{!! $topingKey !!}"
-                               class="biteMeTopping category_{{$categoryKey}}_product_{{$productKey}}_toping_{!! $topingKey !!}"
+                               class="mealNowTopping category_{{$categoryKey}}_product_{{$productKey}}_toping_{!! $topingKey !!}"
                                value="{!! $topingKey !!}"
                                onclick="addTopingToCart({{$productKey}},'{{ $toping['name'] }}',1,{{$categoryKey}},{{$topingKey}})"/>
                         <span class="pizzaIconFirstHalf"></span>
@@ -34,7 +34,7 @@
                         <input type="radio"
                                name="category_{{$categoryKey}}_product_{{$productKey}}_toping_{!! $topingKey !!}"
                                id="category_{{$categoryKey}}_product_{{$productKey}}_toping_{!! $topingKey !!}"
-                               class="biteMeTopping category_{{$categoryKey}}_product_{{$productKey}}_toping_{!! $topingKey !!}"
+                               class="mealNowTopping category_{{$categoryKey}}_product_{{$productKey}}_toping_{!! $topingKey !!}"
                                value="{!! str_replace(' ','_',$toping['name']) !!}"
                                onclick="addTopingToCart({{$productKey}},'{{ $toping['name'] }}',3,{{$categoryKey}},{{$topingKey}})" />
                         <span class="pizzaIconWhole"></span>
@@ -45,7 +45,7 @@
                         <input type="radio"
                                name="category_{{$categoryKey}}_product_{{$productKey}}_toping_{!! $topingKey !!}"
                                id="category_{{$categoryKey}}_product_{{$productKey}}_toping_{!! $topingKey !!}"
-                               class="biteMeTopping category_{{$categoryKey}}_product_{{$productKey}}_toping_{!! $topingKey !!}"
+                               class="mealNowTopping category_{{$categoryKey}}_product_{{$productKey}}_toping_{!! $topingKey !!}"
                                value="{!! str_replace(' ','_',$toping['name']) !!}"
                                onclick="addTopingToCart({{$productKey}},'{{ $toping['name'] }}',2,{{$categoryKey}},{{$topingKey}})" />
                         <span class="pizzaIconSecondtHalf"></span>

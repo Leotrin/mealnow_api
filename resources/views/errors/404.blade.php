@@ -4,8 +4,8 @@
 
     <!-- Meta -->
     <meta charset="utf-8">
-    <meta name="keywords" content="BiteMe, Laravel" />
-    <meta name="description" content="BiteMe - ">
+    <meta name="keywords" content="Mealnow" />
+    <meta name="description" content="Mealnow - ">
     <meta name="author" content="">
 
     <!-- Title -->
@@ -92,7 +92,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="footer-about-company">
-                            <li>Copyright © 2018 BiteMe</li>
+                            <li>Copyright © 2020 Mealnow</li>
                             <li>6000 Ohrid, Macedonia</li>
                             <li>Tel: 00389 - 7# ### ###</li>
                         </ul>

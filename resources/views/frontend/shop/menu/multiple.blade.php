@@ -4,8 +4,8 @@
         @if($extra!=null)
         <div class="col-md-12">
             <label class="checkboxLabel">
-                <span> {!! $extra['name'] !!} <strong id="category_{{$categoryKey}}_product_{{$productKey}}_extra_{{$propertyKey}}_{!! $extraKey !!}" class="biteMeMultiple_price"></strong></span>
-                <input type="checkbox" name="category_{{$categoryKey}}_product_{{$productKey}}_extra_{{$propertyKey}}_{!! $extraKey !!}" class="biteMeMultiple"
+                <span> {!! $extra['name'] !!} <strong id="category_{{$categoryKey}}_product_{{$productKey}}_extra_{{$propertyKey}}_{!! $extraKey !!}" class="mealNowMultiple_price"></strong></span>
+                <input type="checkbox" name="category_{{$categoryKey}}_product_{{$productKey}}_extra_{{$propertyKey}}_{!! $extraKey !!}" class="mealNowMultiple"
                        value="{!! $extra['name'] !!}"
                        onclick="addExtraMultiple({{$productKey}},'{{$extra['name']}}',{!! $propertyKey !!},{{$categoryKey}},{{$extraKey}})" />
                 <span class="checkboxCheckmark"></span>

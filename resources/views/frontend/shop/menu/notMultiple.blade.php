@@ -5,8 +5,8 @@
         @if($extra!=null)
         <div class="col-md-12">
             <label class="radioLabel">
-                <span> {!! $extra['name'] !!} <strong id="category_{{$categoryKey}}_product_{{$productKey}}_extra_{{$propertyKey}}_{!! $extraKey !!}_notMultiple" class="biteMeNotMultiple_price"></strong></span>
-                <input type="radio" name="category_{{$categoryKey}}_product_{{$productKey}}_extra_{{$propertyKey}}" class="biteMeMultiple"
+                <span> {!! $extra['name'] !!} <strong id="category_{{$categoryKey}}_product_{{$productKey}}_extra_{{$propertyKey}}_{!! $extraKey !!}_notMultiple" class="mealNowNotMultiple_price"></strong></span>
+                <input type="radio" name="category_{{$categoryKey}}_product_{{$productKey}}_extra_{{$propertyKey}}" class="mealNowMultiple"
                        value="{{ $extra['name'] }}"
                        onclick="addExtraNotMultiple({{$productKey}},'{{$extra['name']}}',{!! $propertyKey !!},{{$categoryKey}},{{$extraKey}})" />
                 <span class="radioCheckmark"></span>
