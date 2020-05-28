@@ -16,7 +16,7 @@
                         @foreach($product['type'] as $typeKey=>$value)
                             @if($value!=0)
                                 <label for="category_{{$categoryKey}}_product_{{$productKey}}_type_{{$typeKey}}" class="radioLabel" style="text-transform: capitalize;">
-                                    {!! $value['name'].' - '.number_format((float)$value['price'],2) !!}  &pound;
+                                    {!! $value['name'].' - '.number_format((float)$value['price'],2) !!}  $
                                     <input type="radio" name="category_{{$categoryKey}}_product_{{$productKey}}_type"
                                             id="category_{{$categoryKey}}_product_{{$productKey}}_type_{{$typeKey}}"
                                             @if($typeKey==0) checked @endif
@@ -64,7 +64,7 @@
                             <div class="col-md-7 text-right">
                                 <label>&nbsp;</label>
                                 <h4 id="total_{{$productKey}}">
-                                    0.00 &pound;
+                                    0.00 $
                                 </h4>
                             </div>
                         </div>

@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="/new_backend_assets/assets/css/bootstrap-material.css">
     <link rel="stylesheet" href="/new_backend_assets/assets/css/shreerang-material.css">
     <link rel="stylesheet" href="/new_backend_assets/assets/css/uikit.css">
-@yield('head')
+    @yield('head')
     <!-- Libs -->
     <link rel="stylesheet" href="/new_backend_assets/assets/libs/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="/new_backend_assets/assets/libs/flot/flot.css">
@@ -78,10 +78,11 @@
                                     </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="javascript:" class="dropdown-item">
-                                    <i class="feather icon-settings text-muted"></i> &nbsp; My Orders</a>
-                                <div class="dropdown-divider"></div>
-                                <a href="javascript:" class="dropdown-item">
+{{--                                <a href="javascript:" class="dropdown-item">--}}
+{{--                                    <i class="feather icon-settings text-muted"></i> &nbsp; My Orders--}}
+{{--                                </a>--}}
+{{--                                <div class="dropdown-divider"></div>--}}
+                                <a href="{!! url('logout') !!}" class="dropdown-item">
                                     <i class="feather icon-power text-danger"></i> &nbsp; Log Out</a>
                             </div>
                         </div>
@@ -113,6 +114,7 @@
 <script src="/new_backend_assets/assets/js/layout-helpers.js"></script>
 <script src="/new_backend_assets/assets/js/material-ripple.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <!-- Libs -->
 <script src="/new_backend_assets/assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="/new_backend_assets/assets/libs/eve/eve.js"></script>
@@ -123,7 +125,8 @@
 <script src="/new_backend_assets/assets/libs/chart-am4/animated.js"></script>
 
 <!-- Demo -->
-<script src="/new_backend_assets/assets/js/demo.js"></script><script src="assets/js/analytics.js"></script>
+{{--<script src="/new_backend_assets/assets/js/demo.js"></script>--}}
+<script src="assets/js/analytics.js"></script>
 <script src="/new_backend_assets/assets/js/pages/dashboards_index.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 @yield('footer')

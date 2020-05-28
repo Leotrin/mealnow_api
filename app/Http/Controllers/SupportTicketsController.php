@@ -21,11 +21,11 @@ class SupportTicketsController extends Controller
             $newTicket->save();
 
 
-            $this->log(
-                'Support__'.$newTicket->id,
-                'INSERT NEW TICKET '.json_encode($newTicket),
-                'NEW SUPPORT TICKET'
-            );
+//            $this->log(
+//                'Support__'.$newTicket->id,
+//                'INSERT NEW TICKET '.json_encode($newTicket),
+//                'NEW SUPPORT TICKET'
+//            );
 
             return redirect('admin/support');
         }
@@ -47,6 +47,7 @@ class SupportTicketsController extends Controller
         $protocols = Logs::where('function','Support__'.$id)->get();
         $ticketFiles = SupportTickets::find($id);
         $ticket_id = $id;
+        $page = '';
         return view('new_backend.support.ticket',compact('ticket','page','id','ticket_id','ticketMessages','protocols','ticketFiles'));
     }
 
@@ -61,11 +62,11 @@ class SupportTicketsController extends Controller
         $ticket->parent = $id;
         $ticket->save();
 
-        $this->log(
-            'Support__'.$id,
-            'INSERT NEW REPLAY'.json_encode($ticket),
-            'REPLAY MESSAGE FROM ADMIN'
-        );
+//        $this->log(
+//            'Support__'.$id,
+//            'INSERT NEW REPLAY'.json_encode($ticket),
+//            'REPLAY MESSAGE FROM ADMIN'
+//        );
         return redirect('admin/support/view/'.$id);
     }
 }

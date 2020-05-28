@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiV1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserCallController extends BaseController
 {
@@ -64,10 +65,35 @@ class UserCallController extends BaseController
     }
     public function updatePassword(){
         $user = User::find(request('id'));
+        $new_pw = request('new_password');
+        $conf_pw = request('confirm_password');
+        $credentials = request(['email', 'password']);
+        if(!Auth::attempt($credentials)) {
+            return $this->returnData(false, 'You entered a wrong password.', null);
+        }
+        if ($new_pw == $conf_pw) {
             $user->password= bcrypt(request('new_password'));
             $user->save();
             return $this->returnData(true,'Password changed',null);
+        } else {
+            return $this->returnData(false, 'Please confirm your new password.', null);
+        }
 
+    }
+    public function setAddress(){
+        $user = User::find(request('id'));
+        $addressData = request('addressData');
+        $user->city = $addressData['city'];
+        $user->zip = $addressData['zipCode'];
+        $user->address = $addressData['streetName'];
+        $user->tel = $addressData['mobileNumber'];
+        $user->save();
+        return $this->returnData(true,'Address changed',$addressData);
+    }
+    public function getUserWithOrders(){
+        $userX = auth()->guard('api')->user();
+        $user = User::where('id',$userX->id)->with('orders')->first();
+        return $this->returnData(true,null ,$user );
     }
 
    

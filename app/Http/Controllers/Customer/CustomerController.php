@@ -28,9 +28,10 @@ class CustomerController extends Controller
 
     public function previous(){
       try{
-      $orders = Order::where('user_id',auth()->user()->id)
-        ->whereIn('status', [1,2,5,7,9,10,11])->orderBy('id', 'desc')->get();
-      return view('customer.orders',compact('orders'));
+          $orders = Order::with('shop')->where('user_id',auth()->user()->id)
+            ->whereIn('status', [1,2,5,7,9,10,11])->orderBy('id', 'desc')->get();
+
+          return view('customer.orders',compact('orders'));
       }catch (Exception $e){
         Log::error($e->getMessage());
         return redirect('customer')->withErrors(['error' => 'You have no rights to do this action !']);

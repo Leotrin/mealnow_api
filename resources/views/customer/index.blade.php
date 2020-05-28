@@ -9,6 +9,23 @@
     <meta content="" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="apple-touch-icon" sizes="57x57" href="{!! asset('assets/favicons/apple-icon-57x57.png') !!}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{!! asset('assets/favicons/apple-icon-60x60.png') !!}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{!! asset('assets/favicons/apple-icon-72x72.png') !!}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{!! asset('assets/favicons/apple-icon-76x76.png') !!}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{!! asset('assets/favicons/apple-icon-114x114.png') !!}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{!! asset('assets/favicons/apple-icon-120x120.png') !!}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{!! asset('assets/favicons/apple-icon-144x144.png') !!}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{!! asset('assets/favicons/apple-icon-152x152.png') !!}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{!! asset('assets/favicons/apple-icon-180x180.png') !!}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{!! asset('assets/favicons/android-icon-192x192.png') !!}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{!! asset('assets/favicons/favicon-32x32.png') !!}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{!! asset('assets/favicons/favicon-96x96.png') !!}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{!! asset('assets/favicons/favicon-16x16.png') !!}">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <!-- BEGIN PLUGIN CSS -->
     <link href="{{ asset('assets/plugins/pace/pace-theme-flash.css') }}" rel="stylesheet" type="text/css" media="screen"/>
     <!-- END PLUGIN CSS -->
@@ -53,8 +70,8 @@
             </ul>
             <!-- BEGIN LOGO -->
             <a href="{{ url('/frontend') }}">
-                <img src="{{ asset('assets/img/logo.png') }}" class="logo" alt=""
-                     data-src="{{ asset('assets/img/logo.png') }}" data-src-retina="{{ asset('assets/img/logo2x.png') }}" width="106" height="21"/>
+                <img src="{{ asset('assets/logo.png') }}" class="logo" alt=""
+                     data-src="{{ asset('assets/logo.png') }}" data-src-retina="{{ asset('assets/logo.png') }}" height="50px;" style="margin-top: 0;" />
             </a>
             <!-- END LOGO -->
             <ul class="nav pull-right notifcation-center">
@@ -119,15 +136,21 @@
             <p class="menu-title">Navigation </p>
             <ul>
                 <li class="start">
+                    <a href="{{ url('') }}">
+                        <i class="fas fa-plus-circle"></i> <span class="title">New Order</span>
+                    </a>
+                </li>
+                <li class="start">
                     <a href="{{ url('customer') }}">
-                        <i class="fab fa-first-order"></i> <span class="title">Orders</span>
+                        <i class="fas fa-utensils"></i> <span class="title">Orders</span>
                     </a>
                 </li>
                 <li class="start">
                     <a href="{{ url('customer/previous_orders') }}">
-                        <i class="fab fa-first-order"></i> <span class="title">Previous Orders</span>
+                        <i class="fas fa-archive"></i> <span class="title">Previous Orders</span>
                     </a>
                 </li>
+
                 {{--<li class="start">--}}
                     {{--<a href="{{ url('shop') }}">--}}
                         {{--<i class="far fa-file-pdf"></i> <span class="title">Reports</span>--}}
@@ -142,28 +165,28 @@
 
 
 
-    <a href="#" class="scrollup">Scroll</a>
-    <div class="footer-widget">
-        <div class="progress transparent progress-small no-radius no-margin">
-            <div data-percentage="79%" class="progress-bar progress-bar-success animate-progress-bar" ></div>
-        </div>
-        <div class="pull-right">
-            <div class="details-status">
-                <span data-animation-duration="560" data-value="86" class="animate-number"></span>%
-            </div>
-            <a href="lockscreen.html"><i class="fa fa-power-off"></i></a></div>
-    </div>
+{{--    <a href="#" class="scrollup">Scroll</a>--}}
+{{--    <div class="footer-widget">--}}
+{{--        <div class="progress transparent progress-small no-radius no-margin">--}}
+{{--            <div data-percentage="79%" class="progress-bar progress-bar-success animate-progress-bar" ></div>--}}
+{{--        </div>--}}
+{{--        <div class="pull-right">--}}
+{{--            <div class="details-status">--}}
+{{--                <span data-animation-duration="560" data-value="86" class="animate-number"></span>%--}}
+{{--            </div>--}}
+{{--            <a href="lockscreen.html"><i class="fa fa-power-off"></i></a></div>--}}
+{{--    </div>--}}
     <!-- END SIDEBAR -->
     <!-- BEGIN PAGE CONTAINER-->
     <div class="page-content">
         <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-        <div id="portlet-config" class="modal hide">
-            <div class="modal-header">
-                <button data-dismiss="modal" class="close" type="button"></button>
-                <h3>Widget Settings</h3>
-            </div>
-            <div class="modal-body"> Widget settings form goes here </div>
-        </div>
+{{--        <div id="portlet-config" class="modal hide">--}}
+{{--            <div class="modal-header">--}}
+{{--                <button data-dismiss="modal" class="close" type="button"></button>--}}
+{{--                <h3>Widget Settings</h3>--}}
+{{--            </div>--}}
+{{--            <div class="modal-body"> Widget settings form goes here </div>--}}
+{{--        </div>--}}
         <div class="clearfix"></div>
         <div class="content">
             @yield('content')

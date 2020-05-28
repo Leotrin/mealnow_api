@@ -48,7 +48,6 @@ Route::group(['prefix'=>'shop'], function() {
         Route::match(['post'],'/order/complete/{id}','Shop\ShopController@complete');
         Route::match(['get'],'/completed_orders','Shop\ShopController@completed');
         Route::match(['post'],'/order/adjust/{id}','Shop\ShopController@adjust');
-
     });
 });
 Route::group(['prefix'=>'customer'], function() {
@@ -64,8 +63,13 @@ Route::group(['prefix'=>'customer'], function() {
 });
 
 Route::group(['prefix'=>'admin'], function(){
+    Route::match(['get','post'],'/media/upload', 'Admin\ShopController@media_upload');
     Route::middleware('auth')->group(function () {
         Route::get('/', 'Admin\AdminController@index')->name('admin');
+        Route::match(['get','post'],'/home/products', 'Admin\AdminController@home_products');
+        Route::match(['get','post'],'/home/product/deactivate/{id}', 'Admin\AdminController@home_products_deactivate');
+        Route::match(['get','post'],'/home/product/activate/{id}', 'Admin\AdminController@home_products_activate');
+        Route::match(['get','post'],'/home/product/delete/{id}', 'Admin\AdminController@home_products_delete');
         //SUPPORT TICKETS
         Route::match(['get','post'],'/support', 'SupportTicketsController@tickets');
         Route::get('/support/view/{id}', 'SupportTicketsController@view_ticket');

@@ -30,9 +30,9 @@
                                 E-Mail: {{$shop->email}}
                                 <br />
                                 <br />
-                                Minimum price: <strong>{{$shop->min_price_order}} &pound;</strong>
+                                Minimum price: <strong>{{$shop->min_price_order}} $</strong>
                                 <br />
-                                Delivery price: <strong>{{$shop->delivery_price}} &pound;</strong>
+                                Delivery price: <strong>{{$shop->delivery_price}} $</strong>
                                 <br />
                                 Delivery time: <strong>{{$shop->delivery_time}} min</strong>
                             </p>

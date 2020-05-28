@@ -20,6 +20,11 @@ class AppServiceProvider extends ServiceProvider
             $view->with('cities', $cities);
 
         });
+        view()->composer('frontend.form.search', function ($view){
+            $cities  = Shop::distinct()->get(['search_city']);
+            $view->with('cities', $cities);
+
+        });
         Schema::defaultStringLength(191);
     }
 

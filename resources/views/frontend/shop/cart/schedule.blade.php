@@ -5,7 +5,12 @@
     lat = null;
     lng = null;
 </script>
-<div class="modal fade" id="scheduleOrder" tabindex="-1" role="dialog">
+<style>
+    .modal .picker .picker__holder {
+        overflow: visible;
+    }
+</style>
+<div class="modal fade" id="scheduleOrder"  role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,27 +29,27 @@
                         </div>
                     </div>
                     <hr>
-                When would you like your order?
-                <br/>
+                    When would you like your order?
+                    <br/>
 
-                <div class="btn-group btn-group-justified" role="group" style="margin-top:10px;">
-                    <div class="btn-group" role="group">
-                            <button type="button" class="changeToNow btn btn-default @if($schedule['time']=='now') btn-primary @endif btn-md" id="changeToNow" onclick="changeTime('now')" @if(!$shop->isOpen) disabled @endif>Now</button>
+                    <div class="btn-group btn-group-justified" role="group" style="margin-top:10px;">
+                        <div class="btn-group" role="group">
+                                <button type="button" class="changeToNow btn btn-default @if($schedule['time']=='now') btn-primary @endif btn-md" id="changeToNow" onclick="changeTime('now')" @if(!$shop->isOpen) disabled @endif>Now</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                                <button type="button" class="changeToLater btn btn-default @if($schedule['time']=='later') btn-primary @endif btn-md" id="changeToLater"  onclick="changeTime('later')">Later</button>
+                        </div>
                     </div>
-                    <div class="btn-group" role="group">
-                            <button type="button" class="changeToLater btn btn-default @if($schedule['time']=='later') btn-primary @endif btn-md" id="changeToLater"  onclick="changeTime('later')">Later</button>
-                    </div>
-                </div>
 
                     <div id="scheduleDateTime" class="scheduleDateTime row" style="@if($schedule['time']=='now')display:none; @endif" >
                         <h5 style="margin:5px auto;">If you want to schedule an order <br/>please select date and time.</h5>
                         <div class="col-md-6 text-left" style="padding-top: 0; padding-bottom:0%">
                             <span><i class="fa fa-calendar-o"></i> Date</span>
                             <br />
-                            <select name="schedule_date" id="schedule_date" class="form-control form-control-field-fix" onchange="getWorkingHours(workingDays)" >
+                            <select name="schedule_date" id="schedule_date" class="form-control" onchange="getWorkingHours(workingDays)" >
                                     <option value="">Select a date</option>
-                                @foreach($shop->workingDays as $day)
-                                    <option value="{{$day}}">{{date('D, M jS Y', strtotime($day))}}</option>
+                                    @foreach($shop->workingDays as $day)
+                                        <option value="{{$day}}">{{date('D, M jS Y', strtotime($day))}}</option>
                                     @endforeach
                             </select>
                             {{--<input type="text" name="schedule_date" placeholder="Select Schedule Date" id="schedule_date" class="form-control" />--}}
@@ -52,7 +57,13 @@
                         <div class="col-md-6 text-left">
                             <span><i class="fa fa-clock-o"></i> Time</span>
                             <br />
-                            <input type="text" name="schedule_time" placeholder="Select Time in 24h format" value="" id="schedule_time" class="form-control"  />
+                            <select name="schedule_time" id="schedule_time" class="form-control" >
+                                <option value="">Select time</option>
+{{--                                @foreach($shop->workingDays as $day)--}}
+{{--                                    <option value="{{$day}}">{{date('D, M jS Y', strtotime($day))}}</option>--}}
+{{--                                @endforeach--}}
+                            </select>
+{{--                            <input type="text" name="schedule_time" placeholder="Select Time in 24h format" value="" id="schedule_time" class="form-control"  />--}}
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -115,7 +126,7 @@
     };
 
     function initAutocomplete() {
-        autocomplete = new google.maps.places.Autocomplete(
+        var autocomplete = new google.maps.places.Autocomplete(
             (document.getElementById('address_input')),
             {types: ['geocode'], componentRestrictions: {country: "uk"}});
         autocomplete.addListener('place_changed', fillInAddress);
@@ -162,6 +173,6 @@
             });
         }
     }
-    // initAutocomplete();
+    //initAutocomplete();
 </script>
 

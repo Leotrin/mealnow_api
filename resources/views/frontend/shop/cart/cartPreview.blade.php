@@ -54,7 +54,7 @@
                             <small>{!! $orderedProduct['description'] !!}</small>
                         </td>
                         <td style="width:25%;text-align:right;">
-                            <strong>{{$orderedProduct['price']}} £</strong>
+                            <strong>{{$orderedProduct['price']}} $</strong>
                         </td>
                     </tr>
                 @endforeach
@@ -76,7 +76,7 @@
                             {{$cart['total']}}
                         @else
                             0.00
-                        @endif £
+                        @endif $
                     </strong>
                 </td>
             </tr>
@@ -91,7 +91,7 @@
                         @else
                             0.00
                         @endif
-                        £</strong>
+                        $</strong>
                 </td>
             </tr>
             <tr>
@@ -100,7 +100,7 @@
                     @if($cart['cupon'] != null)
                         <strong>
                             -{{$cart['cupon']['price']}}
-                            @if($cart['cupon']['type']=="Fixed") &pound; @else % @endif
+                            @if($cart['cupon']['type']=="Fixed") $ @else % @endif
                         </strong>
                     @else
                         <strong>0</strong>
@@ -135,7 +135,7 @@
                         @endif
                         {!!  number_format((($total + $service)-$cupon),2) !!}
 
-                        £</strong>
+                        $</strong>
                 </td>
             </tr>
         </table>

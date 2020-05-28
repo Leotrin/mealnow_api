@@ -241,7 +241,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <strong>{{$product->price}} &pound;</strong>
+                                        <strong>{{$product->price}} $</strong>
                                     </td>
                                 </tr>
                             @endforeach
@@ -275,16 +275,16 @@
                 </div>
                 <div class="col-md-4 text-right p0">
                     @if($order->delivery_price != 0)
-                        <p>Delivery Fee  <strong>{{$order->delivery_price}} &pound;</strong></p>
+                        <p>Delivery Fee  <strong>{{$order->delivery_price}} $</strong></p>
                     @endif
                     @if($order->cupon_code != null)
                         <p>
-                            Total without Cupon Code <strong>{{$order->sum_without_cupon}} &pound;</strong> <br />
+                            Total without Cupon Code <strong>{{$order->sum_without_cupon}} $</strong> <br />
                             User Cupon Code <strong> {{$order->cupon_code}}</strong> <br />
-                            Discount <strong> - {{$order->discount}} &pound;</strong>
+                            Discount <strong> - {{$order->discount}} $</strong>
                         </p>
                     @endif
-                        <h3>Total<strong> {{$order->sum}} &pound;</strong></h3>
+                        <h3>Total<strong> {{$order->sum}} $</strong></h3>
                     <div class="clearfix"></div>
                 </div>
                 <div class="clearfix"></div>

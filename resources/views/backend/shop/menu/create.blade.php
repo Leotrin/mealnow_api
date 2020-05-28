@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+    <script>
+        var shop = '{!! $shop->id !!}'
+    </script>
     <div class="row-fluid">
         <div class="span12">
             <div class="grid simple ">
@@ -28,7 +31,7 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-md-12" style="padding:0px;">
-                        <form action="{{ url('admin/shop/'.$shop->id.'/menu/create/save') }}" method="post">
+                        <form action="{{ url('admin/shop/'.$shop->id.'/menu/create/save') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input type="hidden" id="shop_id" name="shop_id" value="{{ $shop->id }}" />
                             <input type="hidden" id="menu" name="menu" value="" />
@@ -40,6 +43,7 @@
                             <div class="col-md-12 p0" id="menuDesign">
                                 <div class="col-md-12 p10">
                                     <div class="col-md-8 p10">
+{{--                                        <input type="hidden" value="" id="category_id">--}}
                                         <div class="col-md-9 p10">
                                             <label>Category Name : </label>
                                             <input type="text" id="category_name" class="form-control" placeholder="Category name" />
@@ -133,6 +137,7 @@
         });
     </script>
     <script src="{{ asset('js/availability.js') }}"></script>
+    <script src="{{ asset('js/add_image.js') }}"></script>
     <script src="{{ asset('js/type.js') }}"></script>
     <script src="{{ asset('js/clone.js') }}"></script>
     <script src="{{ asset('js/topings.js') }}"></script>

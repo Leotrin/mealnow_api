@@ -143,6 +143,7 @@ class ShopController extends Controller
         return view('backend.shop.menu.create',compact('shop','ourShops'));
     }
     public function shop_menu_save($id){
+        dd(request()->all());
         //dd(request('menuJson'));
         $shop = Shop::find($id);
         if(isset($shop->menu) && $shop->menu !=null){
@@ -165,24 +166,33 @@ class ShopController extends Controller
 
     public function sortMenu($menu){
       $menu_before_sort = json_decode($menu, true);
+
+      //remove null elements since they leed to errors
+      $menu_before_sort['items'] =   array_filter($menu_before_sort['items']);
+
+      //dd($menu_before_sort);
       $menu_before_sort['items'] = $this->sortItems($menu_before_sort['items']);
       for($i=0; $i<count($menu_before_sort['items']);$i++){
         if($menu_before_sort['items'][$i] != null && count($menu_before_sort['items'][$i])>0){
-          $menu_before_sort['items'][$i]['products'] = $this->sortItems($menu_before_sort['items'][$i]['products']);
-          for ($j=0; $j<count($menu_before_sort['items'][$i]['products']);$j++){
-            if($menu_before_sort['items'][$i]['products'][$j]['topings']!=null && count($menu_before_sort['items'][$i]['products'][$j]['topings']['options'])>0) {
-              $menu_before_sort['items'][$i]['products'][$j]['topings']['options'] = $this->sortItems($menu_before_sort['items'][$i]['products'][$j]['topings']['options']);
+            $menu_before_sort['items'][$i]['products'] =   array_filter($menu_before_sort['items'][$i]['products']);
+            $menu_before_sort['items'][$i]['products'] = $this->sortItems($menu_before_sort['items'][$i]['products']);
 
-            }
-            if($menu_before_sort['items'][$i]['products'][$j]['properties']!=null && count($menu_before_sort['items'][$i]['products'][$j]['properties'])>0) {
-              $menu_before_sort['items'][$i]['products'][$j]['properties'] = $this->sortItems($menu_before_sort['items'][$i]['products'][$j]['properties']);
-              for ($k=0; $k<count($menu_before_sort['items'][$i]['products'][$j]['properties']); $k++){
-                if($menu_before_sort['items'][$i]['products'][$j]['properties'][$k]['options']!=null){
-                  $menu_before_sort['items'][$i]['products'][$j]['properties'][$k]['options'] = $this->sortItems($menu_before_sort['items'][$i]['products'][$j]['properties'][$k]['options']);
+            for ($j=0; $j<count($menu_before_sort['items'][$i]['products']); $j++){
+                if($menu_before_sort['items'][$i]['products'][$j]['topings'] != null && count($menu_before_sort['items'][$i]['products'][$j]['topings']['options'])>0) {
+                    $menu_before_sort['items'][$i]['products'][$j]['topings']['options'] = array_filter($menu_before_sort['items'][$i]['products'][$j]['topings']['options']);
+                    $menu_before_sort['items'][$i]['products'][$j]['topings']['options'] = $this->sortItems($menu_before_sort['items'][$i]['products'][$j]['topings']['options']);
                 }
-              }
+                if($menu_before_sort['items'][$i]['products'][$j]['properties']!=null && count($menu_before_sort['items'][$i]['products'][$j]['properties'])>0) {
+                    $menu_before_sort['items'][$i]['products'][$j]['properties'] = array_filter($menu_before_sort['items'][$i]['products'][$j]['properties']);
+                    $menu_before_sort['items'][$i]['products'][$j]['properties'] = $this->sortItems($menu_before_sort['items'][$i]['products'][$j]['properties']);
+
+                    for ($k=0; $k<count($menu_before_sort['items'][$i]['products'][$j]['properties']); $k++){
+                        if($menu_before_sort['items'][$i]['products'][$j]['properties'][$k]['options']!=null){
+                          $menu_before_sort['items'][$i]['products'][$j]['properties'][$k]['options'] = $this->sortItems($menu_before_sort['items'][$i]['products'][$j]['properties'][$k]['options']);
+                        }
+                    }
+                }
             }
-          }
 
         }
       }
@@ -190,9 +200,11 @@ class ShopController extends Controller
       return json_encode($menu_before_sort);
     }
     public function sortItems($items){
-        if($items!=null) {
+        if($items !=null ) {
             usort($items, function ($a, $b) {
-                return $a['order'] >= $b['order'];
+                if($a!=null && $b != null) {
+                    return $a['order'] >= $b['order'];
+                }
             });
         }
       return $items;
@@ -228,7 +240,7 @@ class ShopController extends Controller
         return redirect('admin/shop/'.$id.'/contact_methods');
     }
     public function availability($id){
-        
+
         $shop = Shop::find($id);
 
         $days = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
@@ -244,5 +256,9 @@ class ShopController extends Controller
         $shop->working_hours = json_encode($availability);
         $shop->save();
         return redirect('admin/shops');
+    }
+
+    public function media_upload(){
+
     }
 }

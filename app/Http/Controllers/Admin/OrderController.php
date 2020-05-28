@@ -15,7 +15,7 @@ class OrderController extends Controller
         $this->middleware('admin');
     }
     public function orders(){
-      if( auth()->user()->group_id == 1){
+      if( auth()->user()->group_id == 1 ){
         $myorders = [];
         $neworders = Order::all();
         foreach ($neworders as $item){

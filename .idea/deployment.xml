@@ -2,6 +2,13 @@
 <project version="4">
   <component name="PublishConfigData" serverName="Office Server">
     <serverData>
+      <paths name="BiteMe">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/testing" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="EuroSava">
         <serverdata>
           <mappings>

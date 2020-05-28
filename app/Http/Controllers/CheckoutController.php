@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OrderLog;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\DB;
 use function GuzzleHttp\Psr7\str;
 use Twilio;
 use App\Mail\NewRegisterOrder;
@@ -27,31 +28,42 @@ class CheckoutController extends Controller
             return redirect('frontend/shop/'.$id.'/checkout/payment');
         }
         $shop = Shop::find($id);
-        if(request()->isMethod('post')){
-            $validation = $this->validator(request()->all())->validate();
-            if($validation!=null){
-                return redirect()->back()->withErrors($validation->errors()); // will return only the errors
-            }
-            $pass = CD::generatePassword();
-            $user = new User();
-            $user->gender   = request('gender');
-            $user->name     = request('name');
-            $user->email    = request('email');
-            $user->city     = request('city');
-            $user->address  = request('address');
-            $user->zip      = request('zip');
-            $user->tel      = request('tel');
-            $user->password = bcrypt($pass);
-            $user->group_id = 4;
-            $user->remember_token = $pass;
-            $user->save();
 
-            $schedule = session('schedule');
-            $schedule['address'] = $user->address;
-            session(['schedule'=>$schedule]);
-            auth()->login($user);
-            Mail::to($user->email)->send(new NewRegisterOrder($user, $pass));
-            return redirect('frontend/shop/'.$id.'/checkout/payment');
+        if(request()->isMethod('post')){
+            try {
+                DB::beginTransaction();
+                $validation = $this->validator(request()->all());
+
+                if ($validation->fails()) {
+                    return redirect()->back()->withErrors($validation->errors()); // will return only the errors
+                }
+
+                $pass = CD::generatePassword();
+                $user = new User();
+                $user->gender = request('gender');
+                $user->name = request('name');
+                $user->email = request('email');
+                $user->city = request('city');
+                $user->address = request('address');
+                $user->zip = request('zip');
+                $user->tel = request('tel');
+                $user->password = bcrypt($pass);
+                $user->group_id = 4;
+                $user->remember_token = $pass;
+                $user->save();
+
+                DB::commit();
+                $schedule = session('schedule');
+                $schedule['address'] = $user->address;
+                session(['schedule' => $schedule]);
+                auth()->login($user);
+                Mail::to($user->email)->send(new NewRegisterOrder($user, $pass));
+                return redirect('frontend/shop/'.$id.'/checkout/payment');
+            }catch (\Throwable $e){
+                report($e);
+                DB::rollBack();
+                return redirect('frontend/shop/'.$id.'/checkout/payment')->with('error', 'something_wrong happened.');
+            }
         }
 
         $cart = session('cart');
@@ -60,7 +72,7 @@ class CheckoutController extends Controller
         }
         $service = session('service');
         $schedule = session('schedule');
-        return view('frontend.shop.register',compact('shop','cart','schedule','service'));
+        return view('frontend.shop.register_new',compact('shop','cart','schedule','service'));
 
     }
 
@@ -126,7 +138,7 @@ class CheckoutController extends Controller
             if($cart['shop_id']==$id) {
                 $totali = $cart['total'] + $cart['service']['price'];
                 $discount = null;
-                if($cart['cupon']!=null){
+                if($cart['cupon'] != null){
                     if($cart['cupon']['type']=="Fixed"){
                         $totali = $totali - $cart['cupon']['price'];
                         $discount = $cart['cupon']['price'];
@@ -141,10 +153,15 @@ class CheckoutController extends Controller
 
                 $app = app();
                 $billing = $app->make('App\Acme\Billing\BillingInterface');
+
                 $b = $billing->charge([
-                    'amount' => $totali,
-                    'description' => 'new order',
-                    'token' => request('stripeToken')
+                    'amount'        => $totali,
+                    "number"        => request('card_no'),
+                    "exp_month"     => request('ccExpiryMonth'),
+                    "exp_year"      => request('ccExpiryYear'),
+                    "cvc"           => request('cvvNumber'),
+                    'description'   => 'new order',
+                    'source'        => request('stripeToken')
                 ]);
                 $transaction = new Transaction();
                 $transaction->trans_id = $b->id;
@@ -173,7 +190,12 @@ class CheckoutController extends Controller
                   }
                   $order->address         = $address;
                   $order->delivery_price  = $cart['service']['price'];
-                  $order->cupon_code      = $cart['cupon']['key'];
+                  if(isset($cart['cupon']) && $cart['cupon' != null]){
+                      $order->cupon_code      = $cart['cupon']['key'];
+                  }
+
+
+
                   $order->discount        = $discount;
                   $order->sum             = $totali;
                   $order->tax             = 0;

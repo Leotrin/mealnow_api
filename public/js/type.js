@@ -4,14 +4,14 @@ function generate_type(number, nr){
           <div class="col-md-12 text-left" style="padding:10px;border:1px solid #ccc;"><strong>Types</strong><br />`;
     myReturn = myReturn + types(number,nr);
     myReturn = myReturn + `<div class="col-md-12 p0" id="`+number+`_`+nr+`_custom_types">`+generate_custom_types(number,nr)+`</div>
-            
+
             <div class="col-md-6 p5">
                 <p>Add Custom type</p>
                 <div class="col-md-5 p5">
                 <input type="text" id="`+number+`_`+nr+`_custom_name" placeholder="Custom Type title" class="form-control" />
                 </div>
                 <div class="col-md-5 p5">
-                <input type="text" id="`+number+`_`+nr+`_custom_type_price" placeholder="Price &pound;" class="form-control" />
+                <input type="text" id="`+number+`_`+nr+`_custom_type_price" placeholder="Price $" class="form-control" />
                 </div>
                 <div class="col-md-2 p5">
                 <button type="button" onclick="add_custom_type(`+number+`,`+nr+`);" class="form-control btn btn-info"><i class="fa fa-plus"></i></button>

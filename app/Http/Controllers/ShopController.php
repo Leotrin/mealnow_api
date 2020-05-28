@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Library\WorkingTImeHeper;
 use App\Models\Shop;
 use Session;
 
@@ -27,20 +28,12 @@ class ShopController extends Controller
     public function shops(){
         $location = request('location');
         $shops = Shop::where('search_city','like','%'.$location.'%')->get();
-        $today = strtolower(date('l'));
+
         //dd($today);
         $now = strtotime('now');
 
-        foreach ($shops as $item) {
-          $item['isOpen'] = false;
-          $wh = json_decode($item->working_hours, true);
-          if(isset($wh[$today])){
-            //dd($now .' '. strtotime($wh[$today]['hours_from']));
-            if($now > strtotime($wh[$today]['hours_from'])  && $now < strtotime($wh[$today]['hours_to'])){
-              $item->isOpen = true;
-              $item->openTill = $wh[$today]['hours_to'];
-            }
-          }
+        foreach ($shops as $shop) {
+            WorkingTImeHeper::openTill($shop);
         }
         $service = 'pickup';
         if(request('pickup_delivery')!=null){
@@ -52,32 +45,20 @@ class ShopController extends Controller
     }
     public function shop($id){
         $shop = Shop::findOrFail($id);
+        WorkingTImeHeper::openTill($shop);
 
-        //process working time
-        $today = strtolower(date('l'));
-        $now = strtotime('now');
-        $shop['isOpen'] = false;
         $wh = json_decode($shop->working_hours, true);
-        if(isset($wh[$today])){
-          if($now > strtotime($wh[$today]['hours_from'])  && $now < strtotime($wh[$today]['hours_to'])){
-            $shop->isOpen = true;
-            $shop->openTill = $wh[$today]['hours_to'];
-          }
-        }
-
         if(!$shop->isOpen){
-            $shop->isOpen = false;
             $shop->nextOpen = 'test';
             $todayDate = date('d-m-Y');
             $notFound = true;
             $i=0;
             while($i <= 7 && $notFound){
               if( isset($wh[strtolower(date('l', strtotime($todayDate. '+'.$i.' days')))]) ){
-
                 $notFound = false;
                 $shop->nextOpen = [
-                  'day'=>date('d-m-Y', strtotime($todayDate. ' +'.$i.' days')),
-                  'start'=> $wh[strtolower(date('l', strtotime($todayDate. '+'.$i.' days')))]['hours_from']
+                    'day'=>date('d-m-Y', strtotime($todayDate. ' +'.$i.' days')),
+                    'start'=> $wh[strtolower(date('l', strtotime($todayDate. '+'.$i.' days')))]['hours_from']
                 ];
               }
               $i++;
@@ -177,8 +158,7 @@ class ShopController extends Controller
         if (session('schedule') != null) {
             $schedule = session('schedule');
         }
-        return  view('frontend.shop.single',
-                compact('shop','menu','cart','schedule'));
+        return  view('frontend.shop.single', compact('shop','menu','cart','schedule'));
     }
 
   function getDay($day){

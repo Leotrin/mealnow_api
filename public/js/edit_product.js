@@ -37,6 +37,11 @@ function edit_product(number,nr){
                             <label>Price : </label>
                             <input type="number" id="`+number+`_`+nr+`_price" min="0" step="0.5" value="`+product.price+`" class="form-control" />
                         </div>
+<!--                        <div class="col-md-12 p5 text-center" style="padding-top:18px;">-->
+<!--                            <label>Image: </label>-->
+<!--                            <input type="file" id="\`+number+\`_\`+nr+\`_image" class="form-control" />-->
+<!--                        </div>-->
+
                     </div>
                     <div class="clearfix"></div>
               </div>
@@ -100,6 +105,11 @@ function save_product(number,nr){
                 var product_to_push = number + '_' + product;
                 products.push(product_to_push);
 
+                // var fd = new FormData();
+                // var files = $('#' + number + '_' + nr + '_image')[0].files[0];
+                // fd.append('file',files);
+
+
                 menuJson.items[number].products[nr] = {
                     "name": product_name,
                     "description": product_escription,
@@ -110,7 +120,8 @@ function save_product(number,nr){
                     "price":price,
                     "type": product.type,
                     "topings": product.topings,
-                    "properties": product.properties
+                    "properties": product.properties,
+                    //'image':fd
                 };
                 save_menu();
                 $('#' + number + '_' + nr + '_product_show').text(menuJson.items[number].products[nr].name);

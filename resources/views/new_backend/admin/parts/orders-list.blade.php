@@ -21,7 +21,7 @@
                                 <td>{{$order->id}}</td>
                                 <td class="text-center">{{$order->shop->name}}</td>
                                 <td class="text-center">{{$order->created_at}}</td>
-                                <td class="text-center">{{$order->sum}} &pound;</td>
+                                <td class="text-center">{{$order->sum}} $</td>
                                 <td class="text-center">
                                     {!! CD::orderStatus($order->status) !!}
                                 </td>

@@ -47,10 +47,10 @@ function item_html(parent,nr){
           <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="` + nr + `_categoryProductheadingOne">
               <h4 class="panel-title" id="` + nr + `_showCategoryName">
-              
-              <button type="button" class="btn btn-warning btn-small" data-toggle="expand" onclick="clone_category(` + nr + `)"><i class="fa fa-copy"></i></button> 
-              <button type="button" class="btn btn-success btn-small" data-toggle="modal" data-target="#edit_` + nr + `"><i class="fa fa-edit"></i></button> 
-              <button type="button" class="btn btn-danger btn-small" data-toggle="modal" data-target="#delete_category_modal_` + nr + `"><i class="fa fa-trash"></i></button> 
+
+              <button type="button" class="btn btn-warning btn-small" data-toggle="expand" onclick="clone_category(` + nr + `)"><i class="fa fa-copy"></i></button>
+              <button type="button" class="btn btn-success btn-small" data-toggle="modal" data-target="#edit_` + nr + `"><i class="fa fa-edit"></i></button>
+              <button type="button" class="btn btn-danger btn-small" data-toggle="modal" data-target="#delete_category_modal_` + nr + `"><i class="fa fa-trash"></i></button>
 
               <a role="button" data-toggle="collapse" href="#categoryProductcollapseOne` + nr + `" aria-expanded="true">
                   <span id="` + nr + `_showCategoryNameCurrent"><strong>` + category.category_name + `</strong> | ` + statusText(category.status) + ` - Order nr : #` + category.order + `</span>
@@ -108,7 +108,7 @@ function item_html(parent,nr){
                 </div>
               </div>
             </div>
-              
+
             </div>
             <div  class="collapse hidden grid-body" id="categoryProductcollapseOne` + nr + `">
               <div class="panel-body" style="background: #fff;border:1px solid #ccc;">
@@ -137,28 +137,32 @@ function item_html(parent,nr){
                                 <label>Active: </label>
                                 <input type="checkbox" id="` + nr + `_status" class="bigCheckbox" value="1" checked/>
                             </div>
-                            <div class="col-md-4 p5 pull-right text-right">
+                            <div class="col-md-6 p5 pull-right text-right">
                                 <button type="button" id="` + nr + `" onclick="addProduct(` + nr + `)" class="btn btn-info">
                                     <i class="fa fa-plus"></i> Add Product
                                 </button>
                             </div>
                             <div class="clearfix"></div>
-                            <div class="col-md-4 p5 text-left">
+                            <div class="col-md-6 p5 text-left">
                                 <label>Custom Type: </label>
                                 <input type="text" id="` + nr + `_product_custom_price" value="" class="form-control" />
                             </div>
-                            <div class="col-md-4 p5 text-left">
+                            <div class="col-md-6 p5 text-left">
                                 <label>Price: </label>
                                 <input type="number" id="` + nr + `_product_price" min="0" step="0.5" value="" class="form-control" />
                             </div>
-                            <div class="col-md-3 p5 text-left">
+                            <div class="col-md-6 p5 text-left">
                                 <label>Order Nr.: </label>
                                 <input type="number" id="` + nr + `_order_nr" min="1" step="1" value="` + nrOrder + `" class="form-control" />
                             </div>
+<!--                            <div class="col-md-6 p5 text-left">-->
+<!--                                <label>Image:</label>-->
+<!--                                <input type="file" id="\` + nr + \`_image" class="form-control" />-->
+<!--                            </div>-->
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                  
+
                     </div>
                 </div>
             </div>

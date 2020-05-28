@@ -2,7 +2,7 @@
 @if($menu['items'])
     @if(count($menu['items'])>0)
     @foreach($menu['items'] as $categoryKey => $category)
-        @if($category['status'] == true)
+        @if($category!=null && $category['status'] == true)
             <div class="gold-members p-3 border-bottom" id="heading{!! $categoryKey !!}">
                 <a class="btn btn-outline-secondary btn-sm  float-right" role="button" data-toggle="collapse" href="#collapse{!! $categoryKey !!}" aria-expanded="true">OPEN</a>
                 <div class="media">
@@ -35,15 +35,21 @@
                                                             @endif
                                                         </strong>
                                                         @if(!empty($product['type']) && isset($product['type']['price']))
-                                                        &pound; {!! number_format($product['type']['price'],2)  !!}+
+                                                        $ {!! number_format($product['type']['price'],2)  !!}+
                                                         @endif
                                                         <br />
                                                         <span>{!! $product['description'] !!} &nbsp;</span>
                                                     </div>
                                                     <div class="col-md-3 text-right" style="padding:5px;">
                                                         <button type="button" class="btn btn-sm  btn-outline-secondary"
-                                                                style="padding: 7px 10px 5px 10px !important;" onclick="reloadProduct({!! $categoryKey !!},{!! $productKey !!}, {!!  key($product['type']) !!}, {!! $product['type'][0]['price'] !!})"
-                                                                data-toggle="modal" data-target="#category_{{$categoryKey}}_product_{{$productKey}}"
+                                                                style="padding: 7px 10px 5px 10px !important;"
+                                                                @if($shop->isOnlyShow == false)
+                                                                    onclick="reloadProduct({!! $categoryKey !!},{!! $productKey !!}, {!!  key($product['type']) !!}, {!! $product['type'][0]['price'] !!})"
+                                                                    data-toggle="modal" data-target="#category_{{$categoryKey}}_product_{{$productKey}}"
+                                                                @else
+                                                                    onclick="alert('This Restaurant currently is not accepting online orders')"
+                                                                @endif
+
                                                         >ADD</button>
                                                     </div>
                                                     @include('frontend.shop.menu.popup_product')

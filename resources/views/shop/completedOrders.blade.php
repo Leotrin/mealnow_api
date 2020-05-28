@@ -14,7 +14,7 @@
                     @if($errors->any())
                         <p class="alert alert-danger">{{$errors->first()}}</p>
                     @endif
-                    <table class="table table-striped dataTableSort" >
+                        <table class="table table-striped dataTableSort" id="dataTableSort" >
                         <thead>
                         <tr>
                             <th>Order ID</th>

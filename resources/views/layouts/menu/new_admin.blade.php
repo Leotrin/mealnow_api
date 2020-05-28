@@ -3,11 +3,11 @@
     <div class="app-brand demo">
             <span class="app-brand-logo demo">
                 <a href="{{ url("/frontend") }}">
-                <img src="{{ asset('new_front/img/logo.png') }}" alt="BITE ME" class="img-fluid"></a>
+                <img src="{{ asset('assets/logo.png') }}" style="height: 66px;" alt="MealNow" class="img-fluid"></a>
             </span>
-        <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
-            <i class="ion ion-md-menu align-middle"></i>
-        </a>
+{{--        <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">--}}
+{{--            <i class="ion ion-md-menu align-middle"></i>--}}
+{{--        </a>--}}
     </div>
     <div class="sidenav-divider mt-0"></div>
 
@@ -26,6 +26,13 @@
             <a href="{{ url('admin/support') }}" class="sidenav-link">
                 <i class="sidenav-icon fa fa-life-ring "></i>
                 <div>Support</div>
+            </a>
+        </li>
+
+        <li class="sidenav-item">
+            <a href="{{ url('admin/home/products') }}" class="sidenav-link">
+                <i class="sidenav-icon fa fa-home "></i>
+                <div>Home Products</div>
             </a>
         </li>
         @if(CD::checkPermission('CuponManagement'))

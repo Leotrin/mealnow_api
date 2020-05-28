@@ -1,9 +1,4 @@
 @extends('customer.index')
-
-@section('head')
-    <meta name="publishable_key" content="{{Config::get('stripe.publishable_key')}}" />
-@endsection
-
 @section('content')
     <div class="row-fluid">
         <div class="span12">
@@ -45,7 +40,7 @@
                         <a href="{{ url('/customer/order/complete/'.$order->id) }}" class="btn btn-info">
                             Order Completed
                         </a>
-                    @else
+                    @elseif(new DateTime() < new DateTime($order->date))
                         <span class="label">Order will be available for completetion after scheduletd time</span>
                     @endif
                     @if($order->status == 6 && $order->has_adjustment)
@@ -156,7 +151,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        {{$product->price}} &pound;
+                                        {{$product->price}} $
                                     </td>
                                 </tr>
                             @endforeach
@@ -191,18 +186,18 @@
                     <div class="col-md-6 text-right p0">
                         @if($order->delivery_price != 0)
                             <p>
-                                Delivery Fee  <strong>{{$order->delivery_price}} &pound;</strong>
+                                Delivery Fee  <strong>{{$order->delivery_price}} $</strong>
                             </p>
                         @endif
                         @if($order->cupon_code != null)
                             <p>
-                                Total without Cupon Code <strong>{{$order->sum_without_cupon}} &pound;</strong> <br />
+                                Total without Cupon Code <strong>{{$order->sum_without_cupon}} $</strong> <br />
                                 User Cupon Code <strong> {{$order->cupon_code}}</strong> <br />
-                                Discount <strong> - {{$order->discount}} &pound;</strong>
+                                Discount <strong> - {{$order->discount}} $</strong>
                             </p>
                         @endif
                         <h3>
-                            Total<strong> {{$order->sum}} &pound;</strong>
+                            Total<strong> {{$order->sum}} $</strong>
                         </h3>
                         <div class="clearfix"></div>
                     </div>

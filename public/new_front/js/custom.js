@@ -8,7 +8,7 @@ Version: 1.0
   "use strict"; // Start of use strict
 
 // ===========Select2============
-$('select').select2();
+$('.select').select2();
 
 // ===========My Account Tabs============
 $(window).on('hashchange', function() {
@@ -16,7 +16,7 @@ $(window).on('hashchange', function() {
     if (url.match('#')) {
     //$('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
     $('a[href="' + window.location.hash + '"]').trigger('click');
-    } 
+    }
    $('.nav-tabs a').on('shown', function (e) {
     window.location.hash = e.target.hash;
    })
@@ -25,7 +25,7 @@ var url = document.location.toString();
 if (url.match('#')) {
     //$('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
     $('a[href="' + window.location.hash + '"]').trigger('click');
-} 
+}
 // Change hash for page-reload
 $('.nav-tabs a').on('shown', function (e) {
     window.location.hash = e.target.hash;
@@ -60,8 +60,8 @@ $('.nav-tabs a').on('shown', function (e) {
       navText:["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
     });
   }
-  
-// Homepage Owl Carousel  
+
+// Homepage Owl Carousel
 var fiveobjowlcarousel = $(".owl-carousel-four");
   if (fiveobjowlcarousel.length > 0) {
      fiveobjowlcarousel.owlCarousel({
@@ -149,7 +149,7 @@ var fiveobjowlcarousel = $(".owl-carousel-five");
       autoplayHoverPause: true,
     });
 }
-	
+
 // Tooltip
 $('[data-toggle="tooltip"]').tooltip()
 

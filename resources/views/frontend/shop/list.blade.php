@@ -269,7 +269,7 @@
                                 </div>
                                 <div class="p-3 position-relative">
                                     <div class="list-card-body">
-                                        <h6 class="mb-1"><a href="detail.html" class="text-black">{!! $item->name !!}</a></h6>
+                                        <h6 class="mb-1"><a href="/frontend/shop/{{$item->id}}" class="text-black">{!! $item->name !!}</a></h6>
                                         <p class="text-gray mb-3">{{$item->address}}</p>
                                         <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="icofont-wall-clock"></i>
                                                 @if($item->isOpen)
@@ -280,7 +280,7 @@
                                     </div>
                                     <div class="list-card-badge">
                                         <ul class="list-inline">
-                                            <li class="list-inline-item"><i class="fa fa-check"></i> Minimum order price: {{$item->min_price_order}} &pound;</li>
+                                            <li class="list-inline-item"><i class="fa fa-check"></i> Minimum order price: {{$item->min_price_order}} $</li>
                                             <li class="list-inline-item"><i class="fa fa-motorcycle"></i> Delivery Time (minutes): {{$item->delivery_time}}</li>
                                             <li class="list-inline-item"><i class="fa fa-money"></i> Delivery Price : {{$item->delivery_price}}$</li>
                                         </ul>
@@ -308,5 +308,5 @@
         </div>
         </div>
     </section>
-              
+
 @endsection

@@ -56,11 +56,11 @@ function changeOption(product,option,value){
     updaterPrice();
 }
 function clearPopUp(){
-    $('.mealNowNotMultiple_price').empty();
-    $('.mealNowTopping').prop('checked',false);
-    $('.mealNowTopping_price').empty();
-    $('.mealNowMultiple').prop('checked',false);
-    $('.mealNowMultiple_price').empty();
+    $('.biteMeNotMultiple_price').empty();
+    $('.biteMeTopping').prop('checked',false);
+    $('.biteMeTopping_price').empty();
+    $('.biteMeMultiple').prop('checked',false);
+    $('.biteMeMultiple_price').empty();
 }
 function addTopingToCart(product,toping,value,categoryKey, topingKey){
     var type = $("input[name='category_"+categoryKey+"_product_"+product+"_type']:checked").val();
@@ -113,7 +113,7 @@ function addTopingToCart(product,toping,value,categoryKey, topingKey){
                 'price'     :price
             }
         );
-        $('p#category_'+categoryKey+'_product_'+product+'_pizzaShow_'+topingKey).html(toping + ' <strong class="mealNowTopping_price">£'+price+'</span>');
+        $('p#category_'+categoryKey+'_product_'+product+'_pizzaShow_'+topingKey).html(toping + ' <strong class="biteMeTopping_price">$'+price+'</span>');
     }
     updaterPrice();
 }
@@ -151,7 +151,7 @@ function addExtraMultiple(product, extra,propertyKey,categoryKey, extraKey){
                 'price' :price
             }
         );
-        $('#category_'+categoryKey+'_product_'+product+'_extra_'+propertyKey+'_'+extraKey).html(price+' &pound;');
+        $('#category_'+categoryKey+'_product_'+product+'_extra_'+propertyKey+'_'+extraKey).html(price+' $');
 
     }else{
         $('#category_'+categoryKey+'_product_'+product+'_extra_'+propertyKey+'_'+extraKey).empty();
@@ -221,9 +221,9 @@ function addExtraNotMultiple(product, extra,propertyKey,categoryKey, extraKey){
         );
     }
 
-    $('.mealNowNotMultiple_price').empty();
+    $('.biteMeNotMultiple_price').empty();
 
-    $('#category_'+categoryKey+'_product_'+product+'_extra_'+propertyKey+'_'+extraKey+'_notMultiple').html(price+' &pound;');
+    $('#category_'+categoryKey+'_product_'+product+'_extra_'+propertyKey+'_'+extraKey+'_notMultiple').html(price+' $');
     updaterPrice();
 }
 function updaterPrice(){
@@ -235,7 +235,7 @@ function updaterPrice(){
     total = total * newProduct.qty;
     var product = JSON.stringify(newProduct);
     $('input#product_'+newProduct.name).val(product);
-    var printTotal = total.toFixed(2).toString()+' £';
+    var printTotal = total.toFixed(2).toString()+' $';
     $('h4#total_'+newProduct.name).html(printTotal);
 }
 function replaceVar(variable){
@@ -299,7 +299,7 @@ function add_to_cart(productKey, categoryKey){
                                 <small>` + product.description + `</small>
                             </td>
                             <td style="width:25%;text-align:right;">
-                                <strong>` + product.price + ` £</strong>
+                                <strong>` + product.price + ` $</strong>
                             </td>
                         </tr>
                     `;
@@ -311,11 +311,11 @@ function add_to_cart(productKey, categoryKey){
                 if (response.values.service.length>0){
                     deliveryPrice =response.values.service.price;
                 }
-                deliveryFee = '<strong>' + deliveryPrice.toString() + ' £</strong>';
-                var subtotal = '<strong>'+response.values.total.toString() + ' £</strong>';
+                deliveryFee = '<strong>' + deliveryPrice.toString() + ' $</strong>';
+                var subtotal = '<strong>'+response.values.total.toString() + ' $</strong>';
 
                 var total = parseFloat(response.values.total) + parseFloat(deliveryPrice);
-                total    =  '<strong>'+total.toString() + ' £</strong>';
+                total    =  '<strong>'+total.toString() + ' $</strong>';
 
                 $('#_delivery').html(deliveryFee);
                 $('#_subtotal').html(subtotal);
@@ -382,11 +382,11 @@ function changeService(toService){
                 $('.deliveryAddressModal').css('display','block');
             }
 
-            var deliveryFee = '<strong>'+response.values.service.price+ ' £</strong>';
-            var subtotal = '<strong>'+response.values.total + ' £</strong>';
+            var deliveryFee = '<strong>'+response.values.service.price+ ' $</strong>';
+            var subtotal = '<strong>'+response.values.total + ' $</strong>';
 
             var total = parseFloat(response.values.total) + parseFloat(response.values.service.price);
-            total    =  '<strong>'+total + ' £</strong>';
+            total    =  '<strong>'+total + ' $</strong>';
 
             $('#_delivery').html(deliveryFee);
             $('#_subtotal').html(subtotal);
@@ -436,7 +436,7 @@ function deleteItemFromCart(key){
                                 <small>`+product.description+`</small>
                             </td>
                             <td style="width:25%;text-align:right;">
-                                <strong>`+product.price+` £</strong>
+                                <strong>`+product.price+` $</strong>
                             </td>
                         </tr>
                     `;
@@ -448,11 +448,11 @@ function deleteItemFromCart(key){
                 if (response.values.service.length>0){
                     deliveryPrice =response.values.service.price;
                 }
-                deliveryFee = '<strong>' + deliveryPrice + ' £</strong>';
-                var subtotal = '<strong>'+response.values.total + ' £</strong>';
+                deliveryFee = '<strong>' + deliveryPrice + ' $</strong>';
+                var subtotal = '<strong>'+response.values.total + ' $</strong>';
 
                 var total = parseFloat(response.values.total) + parseFloat(deliveryPrice);
-                total    =  '<strong>'+total + ' £</strong>';
+                total    =  '<strong>'+total + ' $</strong>';
 
                 $('#_delivery').html(deliveryFee);
                 $('#_subtotal').html(subtotal);
@@ -590,25 +590,68 @@ function getWorkingHours(working_hours) {
     $('#schedule_time').val('');
     var days = {7:'sunday', 1:'monday', 2:'tuesday', 3:'wednesday', 4:'thursday', 5:'friday', 6:'saturday'};
     var dayName = days[selectedDate.getDay()];
-    var tmp1 = working_hours[dayName]['hours_from'].split(':');
-    tmp1 = [parseInt(tmp1[0]), parseInt(tmp1[1])];
-    var tmp2 = working_hours[dayName]['hours_to'].split(':');
-    tmp2 = [parseInt(tmp2[0]),parseInt(tmp2[1])];
+    //var tmp1 = working_hours[dayName]['hours_from'].split(':');
+    //tmp1 = [parseInt(tmp1[0]), parseInt(tmp1[1])];
+    //var tmp2 = working_hours[dayName]['hours_to'].split(':');
+    //tmp2 = [parseInt(tmp2[0]),parseInt(tmp2[1])];
 
-    var now = new Date();
-    if(now.getDate() == selectedDate.getDate()){
-        tmp1 = [now.getHours(), Math.ceil(now.getMinutes()/10)*10 ];
+    //var now = new Date();
+    //if(now.getDate() == selectedDate.getDate()){
+    //    tmp1 = [now.getHours(), Math.ceil(now.getMinutes()/10)*10 ];
+    //}
+
+    // var time_picker = $('#schedule_time').pickatime({
+    //     interval: 10,
+    //     formatSubmit: 'HH:i',
+    //     format: 'HH:i',
+    //     min:tmp1,
+    //     max:tmp2,
+    // }).pickatime('picker');
+    // time_picker.set('min', tmp1);
+    // time_picker.set('max', tmp2);
+
+    var myTimes = returnTimesInBetween(working_hours[dayName]['hours_from'], working_hours[dayName]['hours_to']);
+    var select = document.getElementById("schedule_time");
+    var length = select.options.length;
+    for (i = length-1; i >= 0; i--) {
+        select.options[i] = null;
     }
 
-    var time_picker = $('#schedule_time').pickatime({
-        interval: 10,
-        formatSubmit: 'HH:i',
-        format: 'HH:i',
-        min:tmp1,
-        max:tmp2,
-    }).pickatime('picker');
-    time_picker.set('min', tmp1);
-    time_picker.set('max', tmp2);
+    var elx = document.createElement("option");
+    elx.textContent = 'Please Select';
+    elx.value = 0;
+    select.appendChild(elx);
+
+    for(var i = 0; i < myTimes.length; i++) {
+        var opt = myTimes[i];
+        var el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        select.appendChild(el);
+    }
+}
+
+function returnTimesInBetween(start, end) {
+    console.log('asd');
+    var timesInBetween = [];
+    var startH = parseInt(start.split(":")[0]);
+    var startM = parseInt(start.split(":")[1]);
+    var endH = parseInt(end.split(":")[0]);
+    var endM = parseInt(end.split(":")[1]);
+
+    if (startM == 30)
+        startH++;
+    for (var i = startH; i < endH; i++) {
+        timesInBetween.push(i < 10 ? "0" + i + ":00" : i + ":00");
+        timesInBetween.push(i < 10 ? "0" + i + ":30" : i + ":30");
+    }
+    timesInBetween.push(endH + ":00");
+    if (endM == 30) {
+        timesInBetween.push(endH + ":30");
+    }
+    return timesInBetween;
+
+    //return timesInBetween.map(getGenTime);
 }
 function distance(lat1, lon1, lat2, lon2, unit) {
     var radlat1 = Math.PI * lat1/180

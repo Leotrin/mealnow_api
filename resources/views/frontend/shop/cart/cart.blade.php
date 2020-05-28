@@ -1,11 +1,11 @@
 <div class="pb-2">
     <div class="bg-white rounded shadow-sm text-white mb-4 p-4 clearfix restaurant-detailed-earn-pts card-icon-overlap">
-        <h6 class="pt-0 text-primary mb-1 font-weight-bold">OFFER</h6>
-        <p class="mb-0">60% off on orders above $99 | Use coupon <span class="text-danger font-weight-bold">OSAHAN50</span></p>
-        <div class="icon-overlap">
-            <i class="icofont-sale-discount"></i>
-        </div>
-        <hr>
+{{--        <h6 class="pt-0 text-primary mb-1 font-weight-bold">OFFER</h6>--}}
+{{--        <p class="mb-0">60% off on orders above $99 | Use coupon <span class="text-danger font-weight-bold">OSAHAN50</span></p>--}}
+{{--        <div class="icon-overlap">--}}
+{{--            <i class="icofont-sale-discount"></i>--}}
+{{--        </div>--}}
+{{--        <hr>--}}
         <div style="width:100%;padding:0;font-size:12pt;color:#000;" id="delivery">
             <strong>
                 <span id="serviceTime" class="serviceTime">
@@ -38,6 +38,25 @@
     <h5 class="mb-1 text-white">Your Order</h5>
 
     <div class="bg-white rounded shadow-sm mb-2" id="myShoppingCart">
+        @if(isset($cart['products']) && count($cart['products'])>0)
+            <table style="width:100%;" class="table table-striped">
+                @foreach($cart['products'] as $key=>$orderedProduct)
+                    <tr id="{!! str_replace(' ','_',$orderedProduct['name']) !!}">
+                        <td style="width:5%;">
+                            <span class="deleteIcon"><i onclick="deleteItemFromCart({{$key}})" class="fa fa-trash "></i></span>
+                        </td>
+                        <td style="width:70%;">
+                            {{$orderedProduct['name']}}
+                            <br />
+                            <small>{!! $orderedProduct['description'] !!}</small>
+                        </td>
+                        <td style="width:25%;text-align:right;">
+                            <strong>{{$orderedProduct['price']}} $</strong>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        @endif
     </div>
 
     <div class="mb-2 bg-white rounded p-2 clearfix">
@@ -46,7 +65,7 @@
                     {{$cart['total']}}
                 @else
                     0.00
-                @endif £</span></h6>
+                @endif $</span></h6>
         <p class="seven-color mb-1 text-right"><small>Before delivery fees and taxes</small></p>
         <p class="seven-color mb-1 text-right" >
             <strong>Delivery Fee : </strong>
@@ -56,7 +75,7 @@
                 @else
                     0.00
                 @endif
-                £</strong>
+                $</strong>
         </p>
         <p class="text-black mb-0 text-right" >
             <strong>Total : </strong>
@@ -72,7 +91,7 @@
                     0.00
                 @endif
 
-                £</strong>
+                $</strong>
         </p>
     </div>
     <input type="hidden" value="0" id="nothing" />

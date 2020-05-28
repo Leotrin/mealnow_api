@@ -14,10 +14,10 @@
  </div>
  <!-- end:Top links -->
     <section  style="background: #fafafa;padding:8% 0;">
-        
+
             <div class="col-md-8 page-container p0">
                 <section style="padding:0px 0px;font-size:14px;">
-                        {{ Form::open(array('url'=>url('/frontend/shop/'.$shop->id.'/checkout/register') , 'method'=>'post' ,
+                        {{ Form::open(array('url'=>url('frontend/shop/'.$shop->id.'/checkout/register') , 'method'=>'post' ,
                                             'class'=>'col-md-6 col-md-offset-3',
                                             'enctype'=>'multipart/form-data')) }}
                         <h3 class="text-center" style="color:#888;">
@@ -96,7 +96,7 @@
 @section('footer')
 
     <script>
-        var baseUrl = '{{url('frontend/shop/'.$shop->id)}}';
+        var baseUrl = '{{url('/frontend/shop/'.$shop->id)}}';
     </script>
     <script src="{{asset('js/order.js')}}"></script>
 @endsection

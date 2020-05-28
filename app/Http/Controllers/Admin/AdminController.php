@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Library\CustomDesignHelper as CD;
+use App\Models\HomeProducts;
 use App\Models\Order;
+use App\Models\Shop;
 use App\Models\User;
 use App\Models\Groups;
 use App\Models\Roles;
@@ -15,6 +18,57 @@ class AdminController extends Controller
 {
     public function __construct(){
         $this->middleware('admin');
+    }
+    public function home_products(){
+
+        if(request()->isMethod('post')){
+            request()->validate([
+                'shop_id'=>'required',
+                'image'=>'required',
+                'name'=>'required',
+                'price'=>'required',
+            ]);
+
+            $prod = new HomeProducts();
+            $prod->shop_id = request('shop_id');
+            $prod->name = request('name');
+            $prod->price = request('price');
+            $prod->image = url('/images/noImg.png');
+            $prod->save();
+            $path = base_path().'/public/images/home/'.$prod->id;
+            CD::checkPath($path);
+            $file = request()->file('image');
+            if($file!=null) {
+                $filename = 'home_' . $file->getClientOriginalName();
+                $upload_success = $file->move($path, $filename);
+                if ($upload_success) {
+                    $prod->image = url('/images/home/'.$prod->id.'/'.$filename);
+                    $prod->save();
+                }
+            }
+            return redirect('/admin/home/products');
+        }
+        $products = HomeProducts::where('status','<',2)->paginate(30);
+        $shops = Shop::where('status',1)->get();
+        return view('new_backend.home.products',compact('products','shops'));
+    }
+    public function home_products_activate($id){
+        $product = HomeProducts::findOrFail($id);
+        $product->status = 1;
+        $product->save();
+        return redirect('/admin/home/products');
+    }
+    public function home_products_deactivate($id){
+        $product = HomeProducts::findOrFail($id);
+        $product->status = 0;
+        $product->save();
+        return redirect('/admin/home/products');
+    }
+    public function home_products_delete($id){
+        $product = HomeProducts::findOrFail($id);
+        $product->status = 2;
+        $product->save();
+        return redirect('/admin/home/products');
     }
     public function index(){
         if(auth()->user()->group_id==4){

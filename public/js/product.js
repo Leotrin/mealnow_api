@@ -1,3 +1,27 @@
+function save_image(cat, prod){
+    var fd = new FormData();
+    var files = $('#'+cat+'_'+prod+'_image')[0].files[0];
+    fd.append('file',files);
+    //fd.append('shop', shop);
+
+    $.ajax({
+        url: 'http://mealnow.mangosoft.mk/admin/media/upload',
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(response){
+            if(response != 0){
+                console.log('uploaded');
+                console.log(response);
+            }else{
+                alert('file not uploaded');
+            }
+        },
+    });
+}
+
+
 function addProduct(number){
     //var count = $('#' + number + '_categoryProduct .categoryProduct').length;
     var count = menuJson.items[number].products.length;
@@ -96,8 +120,8 @@ function regenerate_product(number, nr){
                   <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="heading` + number + `_` + nr + `_product_accordion">
                       <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" href="#collapse` + number + `_` + nr + `_product_accordion" aria-expanded="true" id="`+number+`_`+nr+`_product_show">                      
-                            
+                        <a role="button" data-toggle="collapse" href="#collapse` + number + `_` + nr + `_product_accordion" aria-expanded="true" id="`+number+`_`+nr+`_product_show">
+
 
                             `;
         if(product.isSpecial === true){
@@ -118,6 +142,30 @@ function regenerate_product(number, nr){
                         <button type="button" onclick="deleteProduct(` + number + `,` + nr + `)" class="btn btn-danger btn-small">
                             <i class="fa fa-trash"></i> Delete
                         </button>
+                        <button type="button" data-toggle="modal" data-target="#product_image_`+number+`_` + nr + `" class="btn btn-warning btn-small">
+                            <i class="fas fa-image"></i> Add Image
+                        </button>
+                        <div class="modal fade" id="product_image_`+number+`_` + nr + `" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Image</h4>
+                              </div>
+                              <div class="modal-body text-left">
+                                <div class="col-md-12 p10">
+                                    <form method="post" action="#" enctype="multipart/form-data">
+                                        <div class="col-md-4 form-group">
+                                          <label>Image</label>
+                                            <input type="file" id="` + number + `_` + nr + `_image" class="form-control"  />
+                                        </div>
+                                        <button type="button" onclick="save_image(`+number + `,`+nr+`)">Save Image</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                     <div class="clearfix"></div>
                     `+ generate_type(number, nr) + `
@@ -128,7 +176,7 @@ function regenerate_product(number, nr){
                     <div class="col-md-12 p5" id="` + number + `_` + nr + `_property"></div>
                     </div>
                   </div>
-                </div>                    
+                </div>
             </div>
             `;
         $(category).append(newProduct);

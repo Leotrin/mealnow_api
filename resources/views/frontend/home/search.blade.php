@@ -15,14 +15,14 @@
                             <div class="col-lg-3 col-md-3 col-sm-12 form-group">
                                 <div class="location-dropdown">
                                     <i class="icofont-location-arrow"></i>
-                                    <select class="custom-select form-control-lg">
-                                        <option @if($service=='pickup') selected @endif value="pickup">Pickup</option>
-                                        <option @if($service=='pickup') selected @endif value="delivery">Delivery</option>
+                                    <select class="custom-select form-control-lg" style="height: 50px;padding-left: 30px;">
+                                        <option @if($service=='pickup') selected @endif value="pickup">Pickup </option>
+                                        <option @if($service=='delivery') selected @endif value="delivery">Delivery</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 form-group">
-                                <input type="text" list="search_id" id="search_id_input"
+                                <input type="text" list="search_id" id="search_id_input" style="padding-right:10px;"
                                        @if(isset($location)) value="{{$location}}" @endif
                                        name="location" placeholder="What is your location?" class="form-control borderRadiusCircle" />
                                 <datalist id="search_id">
@@ -40,87 +40,18 @@
                 </div>
                 <h6 class="mt-4 text-shadow font-weight-normal colorWhite" >E.g. Beverages, Pizzas, Chinese, Bakery, Indian...</h6>
                 <div class="owl-carousel owl-carousel-category owl-theme">
+                    @foreach($products as $product)
                     <div class="item">
                         <div class="osahan-category-item">
-                            <a href="#">
-                                <img class="img-fluid" src="/new_front/img/list/1.png" alt="">
-                                <h6>American</h6>
-                                <p>156</p>
+                            <a href="/frontend/shop/{{$product->shop_id}}">
+                                <img class="img-fluid" src="{{$product->image}}" alt="">
+                                <h6>{{$product->name}}</h6>
+                                <p>{{$product->price}} $</p>
                             </a>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="osahan-category-item">
-                            <a href="#">
-                                <img class="img-fluid" src="/new_front/img/list/2.png" alt="">
-                                <h6>Pizza</h6>
-                                <p>120</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="osahan-category-item">
-                            <a href="#">
-                                <img class="img-fluid" src="/new_front/img/list/3.png" alt="">
-                                <h6>Healthy</h6>
-                                <p>130</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="osahan-category-item">
-                            <a href="#">
-                                <img class="img-fluid" src="/new_front/img/list/4.png" alt="">
-                                <h6>Vegetarian</h6>
-                                <p>120</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="osahan-category-item">
-                            <a href="#">
-                                <img class="img-fluid" src="/new_front/img/list/1.png" alt="">
-                                <h6>Chinese</h6>
-                                <p>111</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="osahan-category-item">
-                            <a href="#">
-                                <img class="img-fluid" src="/new_front/img/list/2.png" alt="">
-                                <h6>Hamburgers</h6>
-                                <p>958</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="osahan-category-item">
-                            <a href="#">
-                                <img class="img-fluid" src="/new_front/img/list/3.png" alt="">
-                                <h6>Dessert</h6>
-                                <p>56</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="osahan-category-item">
-                            <a href="#">
-                                <img class="img-fluid" src="/new_front/img/list/1.png" alt="">
-                                <h6>Chicken</h6>
-                                <p>40</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="osahan-category-item">
-                            <a href="#">
-                                <img class="img-fluid" src="/new_front/img/list/4.png" alt="">
-                                <h6>Indian</h6>
-                                <p>156</p>
-                            </a>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
             <div class="col-md-4">

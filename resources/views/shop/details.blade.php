@@ -178,7 +178,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        {{$product->price}} &pound;
+                                        {{$product->price}} $
                                     </td>
                                 </tr>
                             @endforeach
@@ -221,26 +221,26 @@
                     <div class="col-md-6 text-right p0">
                         @if($order->delivery_price != 0)
                             <p>
-                                Delivery Fee:  <strong>{{$order->delivery_price}} &pound;</strong>
+                                Delivery Fee:  <strong>{{$order->delivery_price}} $</strong>
                             </p>
                         @endif
                         @if($order->cupon_code != null)
                             <p>
-                                Total without Cupon Code <strong>{{$order->sum_without_cupon}} &pound;</strong> <br />
+                                Total without Cupon Code <strong>{{$order->sum_without_cupon}} $</strong> <br />
                                 User Cupon Code <strong> {{$order->cupon_code}}</strong> <br />
-                                Discount: <strong> - {{$order->discount}} &pound;</strong>
+                                Discount: <strong> - {{$order->discount}} $</strong>
                             </p>
                         @endif
                         @if($order->has_adjustment)
 
-                            <h4>Subtotal<strong> {{$order->sum}} &pound;</strong> </h4>
-                                <p>Aditional Adjustment: {{$order->adjustment->amount}} &pound;</p>
+                            <h4>Subtotal<strong> {{$order->sum}} $</strong> </h4>
+                                <p>Aditional Adjustment: {{$order->adjustment->amount}} $</p>
                             <h3>
-                                Total<strong> {{$order->sum + $order->adjustment->amount}} &pound;</strong>
+                                Total<strong> {{$order->sum + $order->adjustment->amount}} $</strong>
                             </h3>
                         @else
                         <h3>
-                            Total<strong> {{$order->sum}} &pound;</strong>
+                            Total<strong> {{$order->sum}} $</strong>
                         </h3>
                         @endif
                         <div class="clearfix"></div>

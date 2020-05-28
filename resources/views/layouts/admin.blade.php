@@ -35,6 +35,8 @@
     <link href="{{ asset('assets/css/custom-icon-set.css') }}" rel="stylesheet" type="text/css"/>
     <!-- END CSS TEMPLATE -->
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css"/>
+{{--    <script src="{{ asset('assets/plugins/jquery-3.3.1.min.js') }}" type="text/javascript"></script>--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" type="text/javascript"></script>
 </head>
 <!-- END HEAD -->
 
@@ -54,8 +56,8 @@
             </ul>
             <!-- BEGIN LOGO -->
             <a href="{{ url('/frontend') }}">
-                <img src="{{ asset('/new_front/img/logo.png') }}" class="logo" alt=""
-                     data-src="{{ asset('/new_front/img/logo.png') }}" data-src-retina="{{ asset('/new_front/img/logo.png') }}" width="106" height="21"/>
+                <img src="{{ asset('assets/logo.png') }}" class="logo" alt=""
+                     data-src="{{ asset('assets/logo.png') }}" data-src-retina="{{ asset('/assets/logo.png') }}" width="106" height="21"/>
             </a>
             <!-- END LOGO -->
             <ul class="nav pull-right notifcation-center">
@@ -138,7 +140,7 @@
     </div>
 </div>
 <!-- BEGIN CORE JS FRAMEWORK-->
-<script src="{{ asset('assets/plugins/jquery-1.8.3.min.js') }}" type="text/javascript"></script>
+
 <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/plugins/boostrapv3/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/plugins/breakpoints.js') }}" type="text/javascript"></script>
